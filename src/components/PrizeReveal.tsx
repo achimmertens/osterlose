@@ -11,12 +11,13 @@ interface PrizeRevealProps {
 const PrizeReveal: React.FC<PrizeRevealProps> = ({ prize }) => {
   
   React.useEffect(() => {
-    // Confetti-Effekt beim Anzeigen eines Gewinns
+    // Konfetti-Effekt beim Anzeigen eines Gewinns
     if (prize.id > 1) {
       confetti({
         particleCount: prize.id * 30,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
+        colors: ['#FFD700', '#0057B8']  // Lions Farben: Gold und Blau
       });
     }
   }, [prize.id]);

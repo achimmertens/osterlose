@@ -21,7 +21,12 @@ const Index = () => {
   return (
     <div className="min-h-screen py-12 stars-bg">
       <div className="container max-w-md mx-auto px-4">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
+          <img 
+            src="/lovable-uploads/46b8f54e-174d-45b3-a3f4-13f11174ef0f.png" 
+            alt="Lions International Logo" 
+            className="mx-auto mb-4 w-32 h-32"
+          />
           <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung</h1>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
