@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Prize, prizes, lotteryTickets } from "@/utils/prizeData";
+import { Prize, prizes, lotteryTickets, csvPrizeData } from "@/utils/prizeData";
 import LotteryForm from "@/components/LotteryForm";
 import PrizeReveal from "@/components/PrizeReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -53,7 +53,7 @@ const Index = () => {
         {/* Versteckte Tabelle mit allen Losnummern und Gewinnen */}
         {showTable && (
           <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50 overflow-auto p-4">
-            <div className="container mx-auto max-w-2xl">
+            <div className="container mx-auto max-w-4xl">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Gewinn-Tabelle (Admin)</h2>
                 <button 
@@ -68,22 +68,23 @@ const Index = () => {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b border-primary/30">
+                      <th className="py-2 px-4 text-left">ID</th>
                       <th className="py-2 px-4 text-left">Losnummer</th>
                       <th className="py-2 px-4 text-left">Gewinn</th>
                       <th className="py-2 px-4 text-right">Wert</th>
+                      <th className="py-2 px-4 text-left">Sponsor</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {lotteryTickets.map((ticket) => {
-                      const prize = prizes.find((p) => p.id === ticket.prizeId);
-                      return (
-                        <tr key={ticket.ticketNumber} className="border-b border-muted/30 hover:bg-muted/20">
-                          <td className="py-2 px-4">{ticket.ticketNumber}</td>
-                          <td className="py-2 px-4">{prize?.description}</td>
-                          <td className="py-2 px-4 text-right">{prize?.value}</td>
-                        </tr>
-                      );
-                    })}
+                    {csvPrizeData.map((row) => (
+                      <tr key={row.id} className="border-b border-muted/30 hover:bg-muted/20">
+                        <td className="py-2 px-4">{row.id}</td>
+                        <td className="py-2 px-4">{row.ticketNumber}</td>
+                        <td className="py-2 px-4">{row.description}</td>
+                        <td className="py-2 px-4 text-right">{row.value}€</td>
+                        <td className="py-2 px-4">{row.sponsorName}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

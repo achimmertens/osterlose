@@ -12,9 +12,9 @@ const PrizeReveal: React.FC<PrizeRevealProps> = ({ prize }) => {
   
   React.useEffect(() => {
     // Konfetti-Effekt beim Anzeigen eines Gewinns
-    if (prize.id > 1) {
+    if (prize.id !== 0) {
       confetti({
-        particleCount: prize.id * 30,
+        particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
         colors: ['#FFD700', '#0057B8']  // Lions Farben: Gold und Blau
@@ -32,6 +32,14 @@ const PrizeReveal: React.FC<PrizeRevealProps> = ({ prize }) => {
           </span>
         </div>
         <p className="text-lg">{prize.description}</p>
+        
+        {prize.sponsorName && (
+          <div className="mt-4 pt-3 border-t border-primary/20">
+            <p className="text-sm text-muted-foreground">
+              Gesponsert von: <span className="font-medium">{prize.sponsorName}</span>
+            </p>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
