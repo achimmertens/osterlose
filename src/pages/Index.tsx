@@ -27,9 +27,10 @@ const Index = () => {
             alt="Lions International Logo" 
             className="mx-auto mb-4 w-40 h-auto rounded-lg"
           />
-          <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung</h1>
+          <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung Demo</h1>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
+            Achtung - Die Losnummern sind Fake. Das hier ist nur eine Demo Testversion!
           </p>
         </div>
 
