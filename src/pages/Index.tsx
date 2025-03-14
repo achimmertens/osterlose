@@ -1,6 +1,6 @@
 
-import React, { useState } from "react";
-import { Prize, prizes, lotteryTickets, csvPrizeData } from "@/utils/prizeData";
+import React, { useState, useEffect } from "react";
+import { Prize, prizes, lotteryTickets, csvPrizeData, initializeData } from "@/utils/prizeData";
 import LotteryForm from "@/components/LotteryForm";
 import PrizeReveal from "@/components/PrizeReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +8,17 @@ import { Card, CardContent } from "@/components/ui/card";
 const Index = () => {
   const [selectedPrize, setSelectedPrize] = useState<Prize | null>(null);
   const [showTable, setShowTable] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      await initializeData();
+      setIsLoading(false);
+    };
+    
+    loadData();
+  }, []);
 
   const handlePrizeFound = (prize: Prize | null) => {
     setSelectedPrize(prize);
@@ -30,17 +41,27 @@ const Index = () => {
           <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung Demo</h1>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
-            Achtung - Die Losnummern sind Fake. Das hier ist nur eine Demo Testversion!
+            {isLoading ? ' Daten werden geladen...' : ' Achtung - Die Losnummern sind Fake. Das hier ist nur eine Demo Testversion!'}
           </p>
         </div>
 
-        <Card className="border-primary/20 bg-card/90 backdrop-blur-sm mb-8">
-          <CardContent className="p-6">
-            <LotteryForm onPrizeFound={handlePrizeFound} />
-          </CardContent>
-        </Card>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-40">
+            <div className="animate-pulse text-center">
+              <p className="text-primary">Gewinnliste wird geladen...</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <Card className="border-primary/20 bg-card/90 backdrop-blur-sm mb-8">
+              <CardContent className="p-6">
+                <LotteryForm onPrizeFound={handlePrizeFound} />
+              </CardContent>
+            </Card>
 
-        {selectedPrize && <PrizeReveal prize={selectedPrize} />}
+            {selectedPrize && <PrizeReveal prize={selectedPrize} />}
+          </>
+        )}
 
         {/* Versteckte Admin-Schaltfläche in der Ecke */}
         <button
