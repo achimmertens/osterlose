@@ -31,8 +31,8 @@ export interface PrizeCSVRow {
  * Parse CSV string to array of data objects
  */
 export const parseCSVData = (csvContent: string): PrizeCSVRow[] => {
-  // Split the CSV by lines
-  const lines = csvContent.split('\n');
+  // Split the CSV by lines and trim to remove any whitespace
+  const lines = csvContent.split('\n').map(line => line.trim()).filter(line => line);
   
   // Get the header line (first line)
   const headers = lines[0].split(';');
@@ -76,4 +76,19 @@ export const parseCSVData = (csvContent: string): PrizeCSVRow[] => {
         sponsorReceipt: row['Sponsorenquittung']
       };
     });
+};
+
+// Hilfsfunktion zum Debuggen
+export const debugCSVData = (csvContent: string): void => {
+  console.log("CSV Inhalt:", csvContent.substring(0, 100) + "...");
+  const lines = csvContent.split('\n').map(line => line.trim()).filter(line => line);
+  console.log("Anzahl Zeilen:", lines.length);
+  if (lines.length > 0) {
+    console.log("Erste Zeile:", lines[0]);
+    if (lines.length > 1) {
+      console.log("Zweite Zeile:", lines[1]);
+      const values = lines[1].split(';');
+      console.log("Losnummer in zweiter Zeile:", values[1]);
+    }
+  }
 };

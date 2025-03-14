@@ -1,5 +1,5 @@
 
-import { PrizeCSVRow, parseCSVData } from './csvParser';
+import { PrizeCSVRow, parseCSVData, debugCSVData } from './csvParser';
 
 export interface Prize {
   id: number | string;
@@ -54,6 +54,11 @@ export let lotteryTickets: LotteryTicket[] = [];
 export const initializeData = async () => {
   try {
     const csvData = await loadCSVData();
+    
+    // Debug-Ausgabe
+    console.log("CSV-Daten geladen, Länge:", csvData.length);
+    debugCSVData(csvData);
+    
     csvPrizeData = parseCSVData(csvData);
     
     // Aktualisiere die Preise
@@ -74,7 +79,9 @@ export const initializeData = async () => {
       prizeId: row.id
     }));
     
+    // Debug-Ausgabe der verarbeiteten Preise
     console.log('CSV-Daten erfolgreich geladen:', csvPrizeData.length, 'Einträge');
+    console.log('Erste 3 Losnummern:', lotteryTickets.slice(0, 3).map(t => t.ticketNumber));
   } catch (error) {
     console.error('Fehler bei der Initialisierung der Daten:', error);
   }
@@ -82,11 +89,20 @@ export const initializeData = async () => {
 
 // Funktion zum Finden eines Gewinns basierend auf der Losnummer
 export const findPrizeByTicketNumber = (ticketNumber: string): Prize | null => {
+  // Logging für bessere Fehlersuche
+  console.log(`Suche nach Losnummer: "${ticketNumber.trim()}"`);
+  console.log(`Verfügbare Losnummern: ${csvPrizeData.slice(0, 3).map(row => `"${row.ticketNumber}"`).join(', ')}...`);
+  
   const row = csvPrizeData.find(
-    row => row.ticketNumber === ticketNumber.trim()
+    row => row.ticketNumber.trim() === ticketNumber.trim()
   );
   
-  if (!row) return null;
+  if (!row) {
+    console.log('Keine Übereinstimmung gefunden für:', ticketNumber);
+    return null;
+  }
+  
+  console.log('Gewinn gefunden für Losnummer', ticketNumber, ':', row.description);
   
   return {
     id: row.id,

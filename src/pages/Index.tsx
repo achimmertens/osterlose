@@ -4,6 +4,7 @@ import { Prize, prizes, lotteryTickets, csvPrizeData, initializeData } from "@/u
 import LotteryForm from "@/components/LotteryForm";
 import PrizeReveal from "@/components/PrizeReveal";
 import { Card, CardContent } from "@/components/ui/card";
+import { Toaster } from "sonner";
 
 const Index = () => {
   const [selectedPrize, setSelectedPrize] = useState<Prize | null>(null);
@@ -31,6 +32,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen py-12 stars-bg">
+      <Toaster position="top-center" />
       <div className="container max-w-md mx-auto px-4">
         <div className="text-center mb-6">
           <img 

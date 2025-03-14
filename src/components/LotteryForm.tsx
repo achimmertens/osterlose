@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { findPrizeByTicketNumber, Prize } from "@/utils/prizeData";
+import { toast } from "sonner";
 
 interface LotteryFormProps {
   onPrizeFound: (prize: Prize | null) => void;
@@ -17,6 +18,7 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
     
     if (!ticketNumber.trim()) {
       setError("Bitte geben Sie eine Losnummer ein.");
+      toast.error("Bitte geben Sie eine Losnummer ein.");
       return;
     }
     
@@ -24,9 +26,11 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
     
     if (!prize) {
       setError("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
+      toast.error("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
       onPrizeFound(null);
     } else {
       setError("");
+      toast.success("Glückwunsch! Ein Gewinn wurde gefunden!");
       onPrizeFound(prize);
     }
   };
@@ -42,7 +46,7 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
           type="text"
           value={ticketNumber}
           onChange={(e) => setTicketNumber(e.target.value)}
-          placeholder="z.B. 1001"
+          placeholder="z.B. 3230"
           className="bg-secondary/50 border-primary/30 text-center text-xl py-6"
         />
         {error && <p className="text-red-400 text-sm">{error}</p>}
