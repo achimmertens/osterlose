@@ -35,13 +35,6 @@ const Index = () => {
       <Toaster position="top-center" />
       <div className="container max-w-md mx-auto px-4">
         <div className="text-center mb-6">
-          <!---
-          <img 
-            src="https://logowik.com/content/uploads/images/232_lions.jpg" 
-            alt="Lions International Logo" 
-            className="mx-auto mb-4 w-40 h-auto rounded-lg"
-          />
-            --->
           <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung Demo</h1>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
