@@ -45,7 +45,7 @@ const Index = () => {
               className="h-40 w-auto"
             />
           </div>
-          <h1 className="text-4xl font-bold mb-1 text-primary">Lions Club Bergische Löwinnen</h1>
+          <h1 className="text-4xl font-bold mb-1 text-primary">Lions Club /br Bergische Löwinnen</h1>
           <h2 className="text-2xl text-primary mb-4">Osterlose</h2>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
