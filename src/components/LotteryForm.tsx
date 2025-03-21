@@ -6,7 +6,7 @@ import { findPrizeByTicketNumber, Prize } from "@/utils/prizeData";
 import { toast } from "sonner";
 
 interface LotteryFormProps {
-  onPrizeFound: (prize: Prize | null) => void;
+  onPrizeFound: (prize: Prize | null, ticketNumber: string) => void;
 }
 
 const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
@@ -27,11 +27,11 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
     if (!prize) {
       setError("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
       toast.error("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
-      onPrizeFound(null);
+      onPrizeFound(null, ticketNumber.trim());
     } else {
       setError("");
       toast.success("Glückwunsch! Ein Gewinn wurde gefunden!");
-      onPrizeFound(prize);
+      onPrizeFound(prize, ticketNumber.trim());
     }
   };
 

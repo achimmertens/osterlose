@@ -10,6 +10,7 @@ const Index = () => {
   const [selectedPrize, setSelectedPrize] = useState<Prize | null>(null);
   const [showTable, setShowTable] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [ticketNumber, setTicketNumber] = useState<string>("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -21,8 +22,9 @@ const Index = () => {
     loadData();
   }, []);
 
-  const handlePrizeFound = (prize: Prize | null) => {
+  const handlePrizeFound = (prize: Prize | null, inputTicketNumber: string) => {
     setSelectedPrize(prize);
+    setTicketNumber(inputTicketNumber);
   };
 
   // Admin-Funktion zum Anzeigen/Verstecken der Tabelle
@@ -35,7 +37,16 @@ const Index = () => {
       <Toaster position="top-center" />
       <div className="container max-w-md mx-auto px-4">
         <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold mb-2 text-primary">Losverlosung Demo</h1>
+          {/* Lions Logo */}
+          <div className="flex justify-center mb-4">
+            <img 
+              src="/lovable-uploads/b9f9d7e7-f163-414a-afe4-01e7b596bf7b.png" 
+              alt="Lions Club Logo" 
+              className="h-40 w-auto"
+            />
+          </div>
+          <h1 className="text-4xl font-bold mb-1 text-primary">Lions Club Bergische Löwinnen</h1>
+          <h2 className="text-2xl text-primary mb-4">Osterlose</h2>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
             {isLoading ? ' Daten werden geladen...' : ' Achtung - Die Losnummern sind Fake. Das hier ist nur eine Demo Testversion!'}
@@ -56,7 +67,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {selectedPrize && <PrizeReveal prize={selectedPrize} />}
+            {ticketNumber && <PrizeReveal prize={selectedPrize} ticketNumber={ticketNumber} />}
           </>
         )}
 
