@@ -25,7 +25,7 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
     const prize = findPrizeByTicketNumber(ticketNumber);
     
     if (!prize) {
-      setError("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
+      setError(""); // Removed error message for non-winning tickets
       toast.error("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
       onPrizeFound(null, ticketNumber.trim());
     } else {
