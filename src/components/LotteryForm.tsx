@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -26,11 +25,9 @@ const LotteryForm: React.FC<LotteryFormProps> = ({ onPrizeFound }) => {
     
     if (!prize) {
       setError(""); // Removed error message for non-winning tickets
-      toast.error("Diese Losnummer ist nicht gültig oder hat keinen Gewinn.");
       onPrizeFound(null, ticketNumber.trim());
     } else {
       setError("");
-      toast.success("Glückwunsch! Ein Gewinn wurde gefunden!");
       onPrizeFound(prize, ticketNumber.trim());
     }
   };

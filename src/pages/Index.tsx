@@ -47,10 +47,10 @@ const Index = () => {
           </div>
           <h1 className="text-4xl font-bold mb-1 text-primary">Lions Club</h1>
           <h1 className="text-4xl font-bold mb-1 text-primary">Bergische Löwinnen</h1>
-          <h2 className="text-2xl text-primary mb-4">Osterlose</h2>
+          <h2 className="text-2xl text-primary mb-4">Osterlose 2025</h2>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
-            {isLoading ? ' Daten werden geladen...' : ' Achtung - Die Losnummern sind Fake. Das hier ist nur eine Demo Testversion!'}
+            {isLoading ? ' Daten werden geladen...' : ' '}
           </p>
         </div>
 
