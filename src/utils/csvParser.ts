@@ -63,7 +63,7 @@ export const parseCSVData = (csvContent: string): PrizeCSVRow[] => {
         isCashDonation: row[' Bar Spende ? '],
         isItemDonation: row['reine Sachspende'],
         description: row['Gewinn'] || 'Kein Gewinn',
-        value: row['Wert Spende ?'] || '0€',
+        value: row['Wert Spende €'] || '0€',
         acquiredBy: row['akquisiert durch wen'],
         storageLocation: row['Lagerort Gewinn'],
         registeredBy: row['Erfasst von:'],
