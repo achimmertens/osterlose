@@ -1,4 +1,3 @@
-
 /**
  * Utility functions for parsing CSV data
  */
@@ -35,7 +34,8 @@ export const parseCSVData = (csvContent: string): PrizeCSVRow[] => {
   const lines = csvContent.split('\n').map(line => line.trim()).filter(line => line);
   
   // Get the header line (first line)
-  const headers = lines[0].split(';');
+  // Remove quotation marks from headers for compatibility
+  const headers = lines[0].split(';').map(header => header.replace(/"/g, ''));
   
   // Process each data line (skip header)
   return lines.slice(1)
