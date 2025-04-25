@@ -50,6 +50,7 @@ const Index = () => {
           <h2 className="text-2xl text-primary mb-4">Osterlose 2025</h2>
           <p className="text-lg text-muted-foreground">
             Geben Sie Ihre Losnummer ein und entdecken Sie Ihren Gewinn!
+            (Ohne Gewähr)
             {isLoading ? ' Daten werden geladen...' : ' '}
           </p>
         </div>
