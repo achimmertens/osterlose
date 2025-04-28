@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Prize } from "@/utils/prizeData";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,6 +38,14 @@ const PrizeReveal: React.FC<PrizeRevealProps> = ({ prize, ticketNumber }) => {
     );
   }
 
+  // Adjust the rendering of prize.value to ensure the € symbol is only appended if the value is numeric.
+  const formatPrizeValue = (value: string) => {
+    if (!isNaN(parseFloat(value)) && isFinite(Number(value))) {
+      return `${value} €`;
+    }
+    return value;
+  };
+
   return (
     <Card className="prize-reveal border-primary/30 bg-secondary/50 overflow-hidden">
       <CardContent className="p-6 text-center">
@@ -48,7 +55,7 @@ const PrizeReveal: React.FC<PrizeRevealProps> = ({ prize, ticketNumber }) => {
         </p>
         <div className="my-4">
           <span className="text-4xl font-extrabold text-primary">
-            {prize.value}
+            {formatPrizeValue(prize.value)}
           </span>
         </div>
         <p className="text-lg">{prize.description}</p>

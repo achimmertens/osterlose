@@ -1,4 +1,3 @@
-
 import { PrizeCSVRow, parseCSVData, debugCSVData } from './csvParser';
 
 export interface Prize {
@@ -50,6 +49,16 @@ export let prizes: Prize[] = [
 // Erstelle Losnummern-Mapping
 export let lotteryTickets: LotteryTicket[] = [];
 
+// Funktion zum Formatieren des Wertes
+const formatValue = (value: string) => {
+  // Replace commas with dots for proper number parsing
+  const normalizedValue = value.replace(',', '.');
+  if (!isNaN(parseFloat(normalizedValue)) && isFinite(Number(normalizedValue))) {
+    return `${value}€`;
+  }
+  return value;
+};
+
 // Initialisiere die Daten
 export const initializeData = async () => {
   try {
@@ -67,7 +76,7 @@ export const initializeData = async () => {
       ...csvPrizeData.map(row => ({
         id: row.id,
         description: row.description,
-        value: row.value.includes('€') ? row.value : `${row.value}€`,
+        value: formatValue(row.value),
         sponsorName: row.sponsorName,
         ticketNumber: row.ticketNumber
       }))
@@ -107,7 +116,7 @@ export const findPrizeByTicketNumber = (ticketNumber: string): Prize | null => {
   return {
     id: row.id,
     description: row.description,
-    value: row.value.includes('€') ? row.value : `${row.value}€`,
+    value: formatValue(row.value),
     sponsorName: row.sponsorName,
     ticketNumber: row.ticketNumber
   };
