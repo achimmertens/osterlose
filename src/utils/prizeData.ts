@@ -98,21 +98,23 @@ export const initializeData = async () => {
 
 // Funktion zum Finden eines Gewinns basierend auf der Losnummer
 export const findPrizeByTicketNumber = (ticketNumber: string): Prize | null => {
-  // Logging für bessere Fehlersuche
-  console.log(`Suche nach Losnummer: "${ticketNumber.trim()}"`);
-  console.log(`Verfügbare Losnummern: ${csvPrizeData.slice(0, 3).map(row => `"${row.ticketNumber}"`).join(', ')}...`);
-  
+  // Normalize the ticket number to ensure it is 4 digits
+  const normalizedTicketNumber = ticketNumber.padStart(4, '0');
+
+  console.log(`Suche nach Losnummer: "${normalizedTicketNumber}"`);
+  console.log(`Verfügbare Losnummern: ${csvPrizeData.slice(0, 3).map(row => `"${row.ticketNumber.padStart(4, '0')}"`).join(', ')}...`);
+
   const row = csvPrizeData.find(
-    row => row.ticketNumber.trim() === ticketNumber.trim()
+    row => row.ticketNumber.padStart(4, '0') === normalizedTicketNumber
   );
-  
+
   if (!row) {
-    console.log('Keine Übereinstimmung gefunden für:', ticketNumber);
+    console.log('Keine Übereinstimmung gefunden für:', normalizedTicketNumber);
     return null;
   }
-  
-  console.log('Gewinn gefunden für Losnummer', ticketNumber, ':', row.description);
-  
+
+  console.log('Gewinn gefunden für Losnummer', normalizedTicketNumber, ':', row.description);
+
   return {
     id: row.id,
     description: row.description,
