@@ -71,4 +71,12 @@ We don't support custom domains (yet). If you want to deploy your project under 
 # The Data
 The Lions winner data come from https://1drv.ms/x/c/3baa4b2c98947aee/ESJ20XmBp4lPnzoSaw9XxQABh8t87ZDGNufB013afMITOA
 Now Warranty
+To replace it, do the following:
+1. Copy everything from A2 (first line below headline) to N492 (last lower right data set)
+2. Open Notepad++ and paste the clipboard
+3. Search and replace: In search mode check "extended" an d then search for "\t" and replace it wth ";"
+4. copy everything and paste into "Public/Osterlose-2025.csv" into the second line
+5. Save the file
+
+
 
