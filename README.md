@@ -76,7 +76,7 @@ To replace it, do the following:
    1. ![alt text](image.png)
    2. ![alt text](image-1.png)
 2. Open Notepad++ and paste the clipboard
-3. Search and replace: In search mode check "extended" an d then search for "\t" and replace it wth ";"
+3. Search and replace: In search mode check "extended" and then search for "\t" and replace all with ";"
    1. ![alt text](image-2.png)
 4. copy everything and paste into "Public/Osterlose-2025.csv" into the second line
    1. ![alt text](image-3.png)
